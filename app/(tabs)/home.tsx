@@ -1,16 +1,14 @@
-import { StyleSheet,Pressable } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import EditScreenInfo from '../../components/EditScreenInfo';
 import { Text, View } from '../../components/Themed';
 
-export default function TabTwoScreen() {
+export default function TabOneScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Catálogo</Text>
+      <Text style={styles.title}>Home</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <Pressable>
-        <View style={styles.boxitem}></View>
-      </Pressable>
+      <Text style={styles.contentText}>Pagina principal de informacion de la tienda</Text>
     </View>
   );
 }
@@ -30,9 +28,7 @@ const styles = StyleSheet.create({
     height: 1,
     width: '80%',
   },
-  boxitem: {
-    width: '15%',
-    borderRadius: 10,
-    backgroundColor: 'white'
+  contentText: {
+    fontSize: 15,
   }
 });

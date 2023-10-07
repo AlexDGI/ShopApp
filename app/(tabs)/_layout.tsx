@@ -1,17 +1,20 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Tabs } from 'expo-router';
-import { useColorScheme } from 'react-native';
+import { useColorScheme, View } from 'react-native';
 
 import Colors from '../../constants/Colors';
 
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
+
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
+  focused: boolean;
 }) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
+  return (
+    <View style={props.focused ? { width: 50, height: 50, borderRadius: 10, backgroundColor: 'blue', justifyContent: 'center', alignItems: 'center', marginTop: 20 } : {}}>
+      <FontAwesome size={28} style={{ color: props.focused ? 'white' : 'grey' }} {...props} />
+    </View>
+  );
 }
 
 export default function TabLayout() {
@@ -21,19 +24,20 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveBackgroundColor: 'transparent', // Asegúrate de que el fondo esté transparente
       }}>
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color, focused }) => <TabBarIcon name="home" color={color} focused={focused} />,
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="catalogo"
         options={{
           title: 'Catálogo',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color, focused }) => <TabBarIcon name="list" color={color} focused={focused} />,
         }}
       />
     </Tabs>
